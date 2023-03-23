@@ -1,2 +1,2 @@
 # bash-lint-action
-Lint BASH code using ShellCheck and bashate
+This GitHub Action workflow lints BASH code using both [ShellCheck](https://www.shellcheck.net) and [bashate](https://github.com/openstack/bashate).
