@@ -1,0 +1,13 @@
+name: Lint BASH
+author: Zach Butler <kj4ezj+bash-lint-action@pm.me>
+description: Lint BASH code using ShellCheck and bashate.
+branding:
+  icon: terminal
+  color: gray-dark
+inputs:
+  files:
+    description: Array containing paths of BASH files to be linted.
+    required: false
+runs:
+  using: ubuntu-22.04
+  main: lint.sh
