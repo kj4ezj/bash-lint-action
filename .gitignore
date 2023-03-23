@@ -1,0 +1,125 @@
+# archives
+*.7z
+*.7zip
+*.dmg
+*.iso
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+
+# binary files
+*.bin
+
+# bpkg
+deps
+
+# build artifacts
+build
+
+# compiled dynamic libraries
+*.dll
+*.dylib
+*.so
+
+# compiled object files
+*.lo
+*.o
+*.obj
+*.slo
+
+# compiled static libraries
+*.a
+*.la
+*.lai
+*.lib
+
+# data
+*.csv
+*.db
+*.dbf
+*.fods
+*.html
+*.json
+*.ods
+*.ots
+*.tsv
+*.uos
+*.xhtml
+*.xls
+*.xlsm
+*.xlsx
+*.xlt
+*.xltx
+*.xml
+
+# editor files
+.ccls-cache
+.idea
+*.sw?
+*.vim
+.vscode
+
+# environment files
+.env
+.env.test
+
+# executables
+*.apk
+*.app
+*.AppImage
+*.com
+*.deb
+*.dll
+*.dmg
+*.exe
+*.jar
+*.msi
+*.out
+*.rpm
+
+# keys and certs
+*.cer
+*.crt
+*.key
+*.pem
+
+# logs
+logs
+*.log
+npm-debug.log*
+*.txt
+yarn-debug.log*
+yarn-error.log*
+
+# macOS finder
+.DS_Store
+
+# node
+.cache
+coverage
+dist
+.eslintcache
+*.lcov
+lib-cov
+.next
+node_modules
+.node_repl_history
+.npm
+.nuxt
+.serverless
+*.tsbuildinfo
+typings
+.yarn-integrity
+
+# precompiled headers
+*.gch
+*.pch
+
+# prerequisites
+*.d
+
+# python
+__pycache__
+.mypy_cache
