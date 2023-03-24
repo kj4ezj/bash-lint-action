@@ -66,10 +66,8 @@ EXIT_STATUS='0'
 for SCRIPT in $(echo "$FILES" | jq -r '.[] | @base64'); do
     SCRIPT="$(echo "$SCRIPT" | base64 --decode)"
     echo "Linting \"$SCRIPT\"."
-    set +e
     ee bashate -i E006 "$SCRIPT" || EXIT_STATUS="$?"
     ee shellcheck -x -f gcc "$SCRIPT" || EXIT_STATUS="$?"
-    set -e
 done
 
 ### report results ###
