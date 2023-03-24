@@ -57,7 +57,7 @@ if [[ -z "$SANITIZED_INPUT" || "$SANITIZED_INPUT" == '[]' || "$SANITIZED_INPUT" 
     echo 'Action input is undefined, null, or empty.'
     echo "Finding shell scripts in \"$(pwd)\"."
     FILES="$(find . -type f -name '*.sh' -o -name '*.bash' -not -path '.git' | sort | jq -R -s -c 'split("\n")[:-1]')"
-    echo "Found $(echo "$FILES" | jq 'length') shell scripts in \"$(pwd)\"."
+    echo "Found $(echo "$FILES" | jq 'length') shell script(s) in \"$(pwd)\"."
 else
     echo 'Linting shell scripts given in action input.'
     if [[ "$(echo "$INPUT_FILES" | jq -r 'type')" != 'array' ]]; then
@@ -66,7 +66,7 @@ else
         exit 1
     fi
     FILES="$(echo "$INPUT_FILES" | jq -c 'map(select(length > 0 and (. != null)))')"
-    echo "Found $(echo "$FILES" | jq 'length') shell scripts from action input."
+    echo "Found $(echo "$FILES" | jq 'length') shell script(s) from action input."
 fi
 echo '::endgroup::'
 
