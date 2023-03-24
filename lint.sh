@@ -55,7 +55,7 @@ if [[ -z "$INPUT_FILES" ]]; then
     echo "Found $(echo "$FILES" | jq 'length') shell scripts in \"$(pwd)\"."
 else
     echo 'Linting shell scripts given in action input.'
-    FILES="$(echo "$INPUT_FILES" | jq -c '.')"
+    FILES="$(echo "$INPUT_FILES" | jq -c 'map(select(length > 0 and (. != null)))')"
     echo "Found $(echo "$FILES" | jq 'length') shell scripts from action input."
 fi
 
