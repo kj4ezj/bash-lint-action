@@ -48,6 +48,17 @@ fi
 ee shellcheck --version
 echo 'Done installing dependencies.'
 
+### get shell scripts from action input or find them in directory tree ###
+if [[ -z "$INPUT_FILES" ]]; then
+    echo "Finding shell scripts in \"$(pwd)\"."
+    FILES="$(find . -type f -name '*.sh' -o -name '*.bash' -not -path '.git' | sort | jq -R -s -c 'split("\n")[:-1]')"
+    echo "Found $(echo "$FILES" | jq 'length') shell scripts in \"$(pwd)\"."
+else
+    echo 'Linting shell scripts given in action input.'
+    FILES="$(echo "$INPUT_FILES" | jq -c '.')"
+    echo "Found $(echo "$FILES" | jq 'length') shell scripts from action input."
+fi
+
 ### lint BASH ###
 set +e
 # lint with bashate
