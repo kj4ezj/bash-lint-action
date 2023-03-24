@@ -1,6 +1,6 @@
 #!/bin/bash
 set -eo pipefail
-echo 'lint.sh - Lint BASH'
+echo "Begin - ${0##*/}"
 
 function ee {
     echo "$ $*"
@@ -77,5 +77,5 @@ else
     echo 'Linting failed. :/'
 fi
 
-echo 'Done - lint.sh - Lint BASH'
+echo "Done. - ${0##*/}"
 exit "$EXIT_STATUS"
