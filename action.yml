@@ -6,7 +6,7 @@ branding:
   color: gray-dark
 inputs:
   files:
-    description: Array containing paths of BASH files to be linted.
+    description: JSON array containing paths of BASH files to be linted.
     required: false
 runs:
   using: ubuntu-22.04
