@@ -11,4 +11,3 @@ inputs:
 runs:
   using: docker
   image: dockerfile
-  main: lint.sh
