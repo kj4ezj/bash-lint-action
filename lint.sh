@@ -1,6 +1,5 @@
 #!/bin/bash
 set -eo pipefail
-
 echo 'lint.sh - Lint BASH'
 
 function ee {
@@ -8,8 +7,9 @@ function ee {
     "$@"
 }
 
-# dependencies
+### install dependencies ###
 echo 'Installing dependencies.'
+# bashate
 if bashate -h &> /dev/null; then
     echo 'Found bashate.'
 else
@@ -26,6 +26,7 @@ else
     ee pip3 install bashate
     echo 'Installed bashate.'
 fi
+# jq
 if jq --version &> /dev/null; then
     echo 'Found jq.'
 else
@@ -35,6 +36,7 @@ else
     echo 'Installed jq.'
 fi
 ee jq --version
+# shellcheck
 if shellcheck --version &> /dev/null; then
     echo 'Found shellcheck.'
 else
@@ -46,6 +48,7 @@ fi
 ee shellcheck --version
 echo 'Done installing dependencies.'
 
+### lint BASH ###
 set +e
 # lint with bashate
 ee bashate -i E006
@@ -56,7 +59,7 @@ ee shellcheck -x -f gcc
 SHELLCHECK_EXIT_STATUS="$?"
 set -e
 
-# fail if either lint fails
+### report results ###
 if [[ "$BASHATE_EXIT_STATUS" != '0' && "$SHELLCHECK_EXIT_STATUS" != '0' ]]; then
     echo 'ERROR: Both bashate and shellcheck found problems!'
     exit 1
