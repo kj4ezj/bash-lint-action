@@ -39,6 +39,7 @@ for SCRIPT in $(echo "$FILES" | jq -r '.[] | @base64'); do
     ee bashate -i E006 "$SCRIPT" || EXIT_STATUS="$?"
     ee shellcheck -x -f gcc "$SCRIPT" || EXIT_STATUS="$?"
 done
+echo 'Done linting.'
 echo '::endgroup::'
 
 ### report results ###
