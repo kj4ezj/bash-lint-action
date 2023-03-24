@@ -16,4 +16,4 @@ jobs:
           ls -la
 
       - name: Lint BASH
-        uses: .
+        uses: ./
