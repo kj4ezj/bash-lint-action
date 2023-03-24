@@ -9,5 +9,5 @@ inputs:
     description: JSON array containing paths of BASH files to be linted.
     required: false
 runs:
-  using: ubuntu:22.04
+  using: ubuntu-22.04
   main: lint.sh
