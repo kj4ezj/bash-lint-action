@@ -49,7 +49,7 @@ ee shellcheck --version
 echo 'Done installing dependencies.'
 
 ### get shell scripts from action input or find them in directory tree ###
-if [[ -z "$INPUT_FILES" ]]; then
+if [[ -z "$INPUT_FILES" || "$(echo "$INPUT_FILES" | tr -d '[:space:]')" == '[]' ]]; then
     echo "Finding shell scripts in \"$(pwd)\"."
     FILES="$(find . -type f -name '*.sh' -o -name '*.bash' -not -path '.git' | sort | jq -R -s -c 'split("\n")[:-1]')"
     echo "Found $(echo "$FILES" | jq 'length') shell scripts in \"$(pwd)\"."
