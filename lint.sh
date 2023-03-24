@@ -62,28 +62,22 @@ else
 fi
 
 ### lint BASH ###
-set +e
-# lint with bashate
-ee bashate -i E006
-BASHATE_EXIT_STATUS="$?"
-
-# lint with shellcheck
-ee shellcheck -x -f gcc
-SHELLCHECK_EXIT_STATUS="$?"
-set -e
+EXIT_STATUS='0'
+for SCRIPT in $(echo "$FILES" | jq -r '.[] | @base64'); do
+    SCRIPT="$(echo "$SCRIPT" | base64 --decode)"
+    echo "Linting \"$SCRIPT\"."
+    set +e
+    ee bashate -i E006 "$SCRIPT" || EXIT_STATUS="$?"
+    ee shellcheck -x -f gcc "$SCRIPT" || EXIT_STATUS="$?"
+    set -e
+done
 
 ### report results ###
-if [[ "$BASHATE_EXIT_STATUS" != '0' && "$SHELLCHECK_EXIT_STATUS" != '0' ]]; then
-    echo 'ERROR: Both bashate and shellcheck found problems!'
-    exit 1
-elif [[ "$BASHATE_EXIT_STATUS" != '0' ]]; then
-    echo 'ERROR: bashate found problems!'
-    exit "$BASHATE_EXIT_STATUS"
-elif [[ "$SHELLCHECK_EXIT_STATUS" != '0' ]]; then
-    echo 'ERROR: ShellCheck found problems!'
-    exit "$SHELLCHECK_EXIT_STATUS"
+if [[ "$EXIT_STATUS" == '0' ]]; then
+    echo 'Linting passed! :D'
 else
-    echo 'Congratulations, your BASH looks great!'
+    echo 'Linting failed. :/'
 fi
 
 echo 'Done - lint.sh - Lint BASH'
+exit "$EXIT_STATUS"
