@@ -10,5 +10,10 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
+      - name: Debug Code
+        run: |
+          pwd
+          ls -la
+
       - name: Lint BASH
         uses: ./action.yml
