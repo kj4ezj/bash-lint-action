@@ -11,7 +11,7 @@ ee jq --version
 ee shellcheck --version
 
 ### get shell scripts from action input or find them in directory tree ###
-echo '::group::🔍 Find Shell Scripts 🔍::collapsed=true'
+echo '::group::🔍 Find Shell Scripts 🔍'
 SANITIZED_INPUT="$(echo "$INPUT_FILES" | tr -d '[:space:]')"
 if [[ -z "$SANITIZED_INPUT" || "$SANITIZED_INPUT" == '[]' || "$SANITIZED_INPUT" == 'null' || "$SANITIZED_INPUT" == 'undefined' ]]; then
     echo 'Action input is undefined, null, or empty.'
@@ -31,7 +31,7 @@ fi
 echo '::endgroup::'
 
 ### lint BASH ###
-echo '::group::🧹 Lint BASH 🧹::collapsed=false'
+echo '::group::🧹 Lint BASH 🧹'
 EXIT_STATUS='0'
 for SCRIPT in $(echo "$FILES" | jq -r '.[] | @base64'); do
     SCRIPT="$(echo "$SCRIPT" | base64 --decode)"
