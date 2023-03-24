@@ -57,6 +57,11 @@ if [[ -z "$SANITIZED_INPUT" || "$SANITIZED_INPUT" == '[]' || "$SANITIZED_INPUT" 
     echo "Found $(echo "$FILES" | jq 'length') shell scripts in \"$(pwd)\"."
 else
     echo 'Linting shell scripts given in action input.'
+    if [[ "$(echo "$INPUT_FILES" | jq -r 'type')" != 'array' ]]; then
+        printf '\033[1;31mERROR: Action input is not an array!\n\033[0m'
+        echo "Found $(echo "$INPUT_FILES" | jq 'type') type."
+        exit 1
+    fi
     FILES="$(echo "$INPUT_FILES" | jq -c 'map(select(length > 0 and (. != null)))')"
     echo "Found $(echo "$FILES" | jq 'length') shell scripts from action input."
 fi
