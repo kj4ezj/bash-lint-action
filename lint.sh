@@ -72,9 +72,9 @@ done
 
 ### report results ###
 if [[ "$EXIT_STATUS" == '0' ]]; then
-    echo 'Linting passed! :D'
+    printf '\033[1;32mSUCCESS - Linting passed! :D\n\033[0m'
 else
-    echo 'Linting failed. :/'
+    printf '\033[1;31mFAILURE - Linting failed. :/\n\033[0m'
 fi
 
 echo "Done. - ${0##*/}"
