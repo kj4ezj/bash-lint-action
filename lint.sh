@@ -9,7 +9,7 @@ function ee {
 
 ### install dependencies ###
 echo 'Installing dependencies.'
-# bashate
+# install bashate
 if bashate -h &> /dev/null; then
     echo 'Found bashate.'
 else
@@ -26,7 +26,7 @@ else
     ee pip3 install bashate
     echo 'Installed bashate.'
 fi
-# jq
+# install jq
 if jq --version &> /dev/null; then
     echo 'Found jq.'
 else
@@ -36,7 +36,7 @@ else
     echo 'Installed jq.'
 fi
 ee jq --version
-# shellcheck
+# install shellcheck
 if shellcheck --version &> /dev/null; then
     echo 'Found shellcheck.'
 else
