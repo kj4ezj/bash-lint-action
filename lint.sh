@@ -8,6 +8,7 @@ function ee {
 }
 
 ### install dependencies ###
+echo '::group::💽 Install Dependencies 💽::collapsed=true'
 echo 'Installing dependencies.'
 # install bashate
 if bashate -h &> /dev/null; then
@@ -47,8 +48,10 @@ else
 fi
 ee shellcheck --version
 echo 'Done installing dependencies.'
+echo '::endgroup::'
 
 ### get shell scripts from action input or find them in directory tree ###
+echo '::group::🔍 Find Shell Scripts 🔍::collapsed=true'
 SANITIZED_INPUT="$(echo "$INPUT_FILES" | tr -d '[:space:]')"
 if [[ -z "$SANITIZED_INPUT" || "$SANITIZED_INPUT" == '[]' || "$SANITIZED_INPUT" == 'null' || "$SANITIZED_INPUT" == 'undefined' ]]; then
     echo 'Action input is undefined, null, or empty.'
@@ -65,8 +68,10 @@ else
     FILES="$(echo "$INPUT_FILES" | jq -c 'map(select(length > 0 and (. != null)))')"
     echo "Found $(echo "$FILES" | jq 'length') shell scripts from action input."
 fi
+echo '::endgroup::'
 
 ### lint BASH ###
+echo '::group::🧹 Lint BASH 🧹::collapsed=false'
 EXIT_STATUS='0'
 for SCRIPT in $(echo "$FILES" | jq -r '.[] | @base64'); do
     SCRIPT="$(echo "$SCRIPT" | base64 --decode)"
@@ -74,6 +79,7 @@ for SCRIPT in $(echo "$FILES" | jq -r '.[] | @base64'); do
     ee bashate -i E006 "$SCRIPT" || EXIT_STATUS="$?"
     ee shellcheck -x -f gcc "$SCRIPT" || EXIT_STATUS="$?"
 done
+echo '::endgroup::'
 
 ### report results ###
 if [[ "$EXIT_STATUS" == '0' ]]; then
