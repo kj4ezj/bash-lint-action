@@ -7,48 +7,8 @@ function ee {
     "$@"
 }
 
-### install dependencies ###
-echo '::group::💽 Install Dependencies 💽::collapsed=true'
-echo 'Installing dependencies.'
-# install bashate
-if bashate -h &> /dev/null; then
-    echo 'Found bashate.'
-else
-    if pip3 --version &> /dev/null; then
-        echo 'Found pip3.'
-    else
-        echo 'Installing pip3.'
-        ee apt-get update
-        ee apt-get install -y python3-pip
-        echo 'Installed pip3.'
-    fi
-    ee pip3 --version
-    echo 'Installing bashate.'
-    ee pip3 install bashate
-    echo 'Installed bashate.'
-fi
-# install jq
-if jq --version &> /dev/null; then
-    echo 'Found jq.'
-else
-    echo 'Installing jq.'
-    ee apt-get update
-    ee apt-get install -y jq
-    echo 'Installed jq.'
-fi
 ee jq --version
-# install shellcheck
-if shellcheck --version &> /dev/null; then
-    echo 'Found shellcheck.'
-else
-    echo 'Installing shellcheck.'
-    ee apt-get update
-    ee apt-get install -y shellcheck
-    echo 'Installed shellcheck.'
-fi
 ee shellcheck --version
-echo 'Done installing dependencies.'
-echo '::endgroup::'
 
 ### get shell scripts from action input or find them in directory tree ###
 echo '::group::🔍 Find Shell Scripts 🔍::collapsed=true'
