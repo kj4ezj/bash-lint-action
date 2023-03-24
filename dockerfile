@@ -10,4 +10,4 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 # pack script
 COPY lint.sh /lint.sh
-RUN lint.sh
+RUN /lint.sh
