@@ -1,52 +1,63 @@
 # archives
 *.7z
 *.7zip
+*.bz2
 *.dmg
+*.gpg
+*.gz
+*.gzip
 *.iso
+*.lzo
 *.rar
 *.tar
-*.tar.gz
 *.tgz
+*.xz
 *.zip
+*.zst
+*.zstd
 
 # binary files
+*.a
 *.bin
-
-# bpkg
-deps
-
-# build artifacts
-build
-
-# compiled dynamic libraries
+*.d
 *.dll
 *.dylib
-*.so
-
-# compiled object files
-*.lo
-*.o
-*.obj
-*.slo
-
-# compiled static libraries
-*.a
+*.gch
 *.la
 *.lai
 *.lib
+*.lo
+*.o
+*.obj
+*.pch
+*.slo
+*.so
 
-# data
+# build artifacts
+artifacts
+build
+.cache
+cache
+coverage
+deps
+dist
+node_modules
+out
+target
+tmp
+
+# data files
 *.csv
 *.db
 *.dbf
 *.fods
-*.html
 *.json
 *.ods
+*.odt
 *.ots
+*.sqlite
 *.tsv
 *.uos
-*.xhtml
 *.xls
 *.xlsm
 *.xlsx
@@ -61,9 +72,8 @@ build
 *.vim
 .vscode
 
-# environment files
+# environment variable files
 .env
-.env.test
 
 # executables
 *.apk
@@ -71,30 +81,36 @@ build
 *.AppImage
 *.com
 *.deb
-*.dll
-*.dmg
 *.exe
 *.jar
 *.msi
 *.out
 *.rpm
 
+# file explorer metadata
+._*
+*.DS_Store*
+ehthumbs.db
+lost+found
+.Spotlight*
+thumbs.db
+Thumbs.db
+thumbs.db:encryptable
+thumbs.db_encryptable
+.Trashes
+
 # keys and certs
 *.cer
 *.crt
 *.key
 *.pem
+*.pub
 
 # logs
 logs
 *.log
-npm-debug.log*
+*.log*
 *.txt
-yarn-debug.log*
-yarn-error.log*
-
-# macOS finder
-.DS_Store
 
 # node
 .cache
@@ -103,23 +119,27 @@ dist
 .eslintcache
 *.lcov
 lib-cov
+*.lock
 .next
 node_modules
 .node_repl_history
 .npm
+npm-debug.log*
 .nuxt
 .serverless
 *.tsbuildinfo
 typings
+yarn-debug.log*
+yarn-error.log*
 .yarn-integrity
-
-# precompiled headers
-*.gch
-*.pch
-
-# prerequisites
-*.d
 
 # python
 __pycache__
 .mypy_cache
+
+# temporary files
+*.bak
+*.old
+*.orig
+*.test
+*.tmp
